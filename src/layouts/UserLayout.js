@@ -11,26 +11,27 @@ import logo from '../assets/logo.svg';
 import getPageTitle from '@/utils/getPageTitle';
 
 const links = [
-  {
-    key: 'help',
-    title: formatMessage({ id: 'layout.user.link.help' }),
-    href: '',
-  },
-  {
-    key: 'privacy',
-    title: formatMessage({ id: 'layout.user.link.privacy' }),
-    href: '',
-  },
-  {
-    key: 'terms',
-    title: formatMessage({ id: 'layout.user.link.terms' }),
-    href: '',
-  },
+  // {
+  //   key: 'help',
+  //   title: formatMessage({ id: 'layout.user.link.help' }),
+  //   href: '',
+  // },
+  // {
+  //   key: 'privacy',
+  //   title: formatMessage({ id: 'layout.user.link.privacy' }),
+  //   href: '',
+  // },
+  // {
+  //   key: 'terms',
+  //   title: formatMessage({ id: 'layout.user.link.terms' }),
+  //   href: '',
+  // },
 ];
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> 2019 蚂蚁金服体验技术部出品
+    {/*Copyright <Icon type="copyright" /> 2019 蚂蚁金服体验技术部出品*/}
+    MT
   </Fragment>
 );
 
@@ -63,10 +64,10 @@ class UserLayout extends Component {
               <div className={styles.header}>
                 <Link to="/">
                   <img alt="logo" className={styles.logo} src={logo} />
-                  <span className={styles.title}>Ant Design</span>
+                  <span className={styles.title}>ALPHA</span>
                 </Link>
               </div>
-              <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+              <div className={styles.desc}>ALPHA</div>
             </div>
             {children}
           </div>
