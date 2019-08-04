@@ -143,7 +143,7 @@ export default {
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
           loginParams.password = values.password
           axios({
-            url: 'http://promotion.new-dhb.com/login',
+            url: '/login',
             method: 'post',
             data: loginParams
           }).then(response => {
