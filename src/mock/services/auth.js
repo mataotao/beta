@@ -1,15 +1,9 @@
 import Mock from 'mockjs2'
 import { builder, getBody } from '../util'
 
-const username = ['admin', 'user', 'super']
-const password = ['21232f297a57a5a743894a0e4a801fc3', '8914de686ab28dc22f30d3d8e107ff6c'] // admin, ant.design
-
 const login = (options) => {
   const body = getBody(options)
   console.log('mock: body', body)
-  if (!username.includes(body.username) || !password.includes(body.password)) {
-    return builder({ isLogin: true }, '账户或密码错误', 401)
-  }
 
   return builder({
     'id': Mock.mock('@guid'),
