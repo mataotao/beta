@@ -153,7 +153,7 @@ export default {
               return
             }
             // Vue.ls.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)
-            Login(loginParams)
+            Login(response.data)
               .then((res) => this.loginSuccess(res))
               .catch(err => this.requestFailed(err))
               .finally(() => {
