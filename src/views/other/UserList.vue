@@ -206,7 +206,6 @@ export default {
       loadData: parameter => {
         return getRoleList(parameter)
           .then(res => {
-            console.log('getRoleList', res)
             return res.result
           })
       },

@@ -40,7 +40,7 @@ export default {
       return keys
     }
   },
-  mounted () {
+  created () {
     this.updateMenu()
   },
   watch: {
@@ -74,13 +74,14 @@ export default {
     },
     updateMenu () {
       const routes = this.$route.matched.concat()
-      const { hidden } = this.$route.meta
-      if (routes.length >= 3 && hidden) {
+
+      if (routes.length >= 4 && this.$route.meta.hidden) {
         routes.pop()
-        this.selectedKeys = [routes[routes.length - 1].path]
+        this.selectedKeys = [routes[2].path]
       } else {
         this.selectedKeys = [routes.pop().path]
       }
+
       const openKeys = []
       if (this.mode === 'inline') {
         routes.forEach(item => {
@@ -103,16 +104,6 @@ export default {
       const tag = target && 'a' || 'router-link'
       const props = { to: { name: menu.name } }
       const attrs = { href: menu.path, target: menu.meta.target }
-
-      if (menu.children && menu.hideChildrenInMenu) {
-        // 把有子菜单的 并且 父菜单是要隐藏子菜单的
-        // 都给子菜单增加一个 hidden 属性
-        // 用来给刷新页面时， selectedKeys 做控制用
-        menu.children.forEach(item => {
-          item.meta = Object.assign(item.meta, { hidden: true })
-        })
-      }
-
       return (
         <Item {...{ key: menu.path }}>
           <tag {...{ props, attrs }}>
@@ -148,7 +139,6 @@ export default {
       )
     }
   },
-
   render () {
     const { mode, theme, menu } = this
     const props = {

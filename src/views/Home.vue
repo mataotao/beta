@@ -121,24 +121,6 @@
         <tag-select-option value="cat7">类目7</tag-select-option>
       </tag-select>
     </a-card>
-
-    <h2># DescriptionList 组件 </h2>
-
-    <a-divider> DescriptionList </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <description-list title="组名称" size="small">
-        <description-list-item term="负责人">林东东</description-list-item>
-        <description-list-item term="角色码">1234567</description-list-item>
-        <description-list-item term="所属部门">XX公司-YY部</description-list-item>
-        <description-list-item term="过期时间">2018-08-08</description-list-item>
-        <description-list-item term="描述">这段描述很长很长很长很长很长很长很长很长很长很长很长很长很长很长...</description-list-item>
-      </description-list>
-    </a-card>
-
-    <a-divider> TagCloud </a-divider>
-    <a-card style="margin-bottom: 3rem">
-      <tag-cloud :tag-list="tagCloudData"></tag-cloud>
-    </a-card>
   </div>
 </template>
 
@@ -151,12 +133,9 @@ import CountDown from '@/components/CountDown/CountDown'
 import Ellipsis from '@/components/Ellipsis'
 import NumberInfo from '@/components/NumberInfo'
 import TagSelect from '@/components/TagSelect'
-import { DescriptionList, TagCloud } from '@/components/'
 
 const AvatarListItem = AvatarList.AvatarItem
 const TagSelectOption = TagSelect.Option
-
-const DescriptionListItem = DescriptionList.Item
 
 export default {
   name: 'Home',
@@ -168,19 +147,12 @@ export default {
     AvatarList,
     AvatarListItem,
     TagSelect,
-    TagSelectOption,
-    TagCloud,
-    DescriptionList,
-    DescriptionListItem
+    TagSelectOption
   },
   data () {
     return {
-      targetTime: new Date().getTime() + 3900000,
-      tagCloudData: []
+      targetTime: new Date().getTime() + 3900000
     }
-  },
-  created () {
-    this.getTagCloudData()
   },
   methods: {
     onEndHandle () {
@@ -190,11 +162,6 @@ export default {
       this.$notification.open({
         message: 'Notification Title',
         description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.'
-      })
-    },
-    getTagCloudData () {
-      this.$http.get('/data/antv/tag-cloud').then(res => {
-        this.tagCloudData = res.result
       })
     }
   }

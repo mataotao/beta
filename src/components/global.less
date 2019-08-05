@@ -1,6 +1,12 @@
 @import './index.less';
 
+html {
+  overflow: auto;
+}
+
 body {
+  // 打开滚动条固定显示
+  overflow-y: scroll;
 
   &.colorWeak {
     filter: invert(80%);
@@ -284,10 +290,6 @@ body {
         flex: 1 0 auto;
         height: 64px;
         overflow: hidden;
-
-        .content-box {
-          float: right;
-        }
       }
     }
 
@@ -355,11 +357,11 @@ body {
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   position: relative;
   z-index: 10;
-  min-height: 100vh;
+  height: auto;
 
   .ant-layout-sider-children {
+    padding-top: 64px;
     overflow-y: hidden;
-
     &:hover {
       overflow-y: auto;
     }
@@ -371,13 +373,18 @@ body {
   }
 
   .logo {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 64px;
-    padding-left: 24px;
-    overflow: hidden;
     line-height: 64px;
+    padding-left: 24px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
     background: #002140;
-    transition: all .3s;
+    overflow: hidden;
+    z-index: 9;
 
     img,
     svg,

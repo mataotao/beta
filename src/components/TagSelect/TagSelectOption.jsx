@@ -23,14 +23,8 @@ export default {
     }
   },
   watch: {
-    'checked' (val) {
+    '$parent.checkAll' (val) {
       this.localChecked = val
-    },
-    '$parent.items': {
-      handler: function (val) {
-        this.value && val.hasOwnProperty(this.value) && (this.localChecked = val[this.value])
-      },
-      deep: true
     }
   },
   render () {

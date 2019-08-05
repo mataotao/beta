@@ -6,7 +6,7 @@
           <a-menu
             :mode="device == 'mobile' ? 'horizontal' : 'inline'"
             :style="{ border: '0', width: device == 'mobile' ? '560px' : 'auto'}"
-            :selectedKeys="selectedKeys"
+            :defaultSelectedKeys="defaultSelectedKeys"
             type="inner"
             @openChange="onOpenChange"
           >
@@ -64,7 +64,7 @@ export default {
       mode: 'inline',
 
       openKeys: [],
-      selectedKeys: [],
+      defaultSelectedKeys: [],
 
       // cropper
       preview: {},
@@ -96,12 +96,7 @@ export default {
     },
     updateMenu () {
       const routes = this.$route.matched.concat()
-      this.selectedKeys = [ routes.pop().path ]
-    }
-  },
-  watch: {
-    '$route' (val) {
-      this.updateMenu()
+      this.defaultSelectedKeys = [ routes.pop().path ]
     }
   }
 }

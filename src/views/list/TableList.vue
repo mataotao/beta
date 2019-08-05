@@ -84,16 +84,12 @@
       :data="loadData"
       :alert="options.alert"
       :rowSelection="options.rowSelection"
-      showPagination="auto"
     >
       <span slot="serial" slot-scope="text, record, index">
         {{ index + 1 }}
       </span>
       <span slot="status" slot-scope="text">
         <a-badge :status="text | statusTypeFilter" :text="text | statusFilter" />
-      </span>
-      <span slot="description" slot-scope="text">
-        <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
       </span>
 
       <span slot="action" slot-scope="text, record">
@@ -111,7 +107,7 @@
 
 <script>
 import moment from 'moment'
-import { STable, Ellipsis } from '@/components'
+import { STable } from '@/components'
 import StepByStepModal from './modules/StepByStepModal'
 import CreateForm from './modules/CreateForm'
 import { getRoleList, getServiceList } from '@/api/manage'
@@ -139,7 +135,6 @@ export default {
   name: 'TableList',
   components: {
     STable,
-    Ellipsis,
     CreateForm,
     StepByStepModal
   },
@@ -162,8 +157,7 @@ export default {
         },
         {
           title: '描述',
-          dataIndex: 'description',
-          scopedSlots: { customRender: 'description' }
+          dataIndex: 'description'
         },
         {
           title: '服务调用次数',
@@ -230,13 +224,7 @@ export default {
           alert: { show: true, clear: () => { this.selectedRowKeys = [] } },
           rowSelection: {
             selectedRowKeys: this.selectedRowKeys,
-            onChange: this.onSelectChange,
-            getCheckboxProps: record => ({
-              props: {
-                disabled: record.no === 'No 2', // Column configuration not to be checked
-                name: record.no
-              }
-            })
+            onChange: this.onSelectChange
           }
         }
         this.optionAlertShow = true

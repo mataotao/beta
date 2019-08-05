@@ -6,8 +6,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store/'
 import { VueAxios } from './utils/request'
-// mock
-import './mock'
 
 import bootstrap from './core/bootstrap'
 import './core/use'
@@ -22,6 +20,8 @@ Vue.use(VueAxios)
 new Vue({
   router,
   store,
-  created: bootstrap,
+  created () {
+    bootstrap()
+  },
   render: h => h(App)
 }).$mount('#app')
