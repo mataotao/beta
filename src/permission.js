@@ -23,7 +23,7 @@ router.beforeEach((to, from, next) => {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo')
           .then(res => {
-            const roles = res.result && res.result.role
+            const roles = res.data && res.data.role
             // 调用 vuex 的 从后端获取用户的路由菜单，动态添加可访问路由表
             store.dispatch('GenerateRoutes', { roles }).then(() => {
               // 把已获取到的路由菜单加入到路由表中
@@ -38,7 +38,8 @@ router.beforeEach((to, from, next) => {
               }
             })
           })
-          .catch(() => {
+          .catch((r) => {
+            console.log(r)
             notification.error({
               message: '错误',
               description: '请求用户信息失败，请重试'

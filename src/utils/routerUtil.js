@@ -1,6 +1,6 @@
 import { axios } from '@/utils/request'
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView } from '@/layouts'
+import { BasicLayout, BlankLayout, PageView, RouteView } from '@/layouts'
 
 // 前端路由表
 const constantRouterComponents = {
@@ -28,7 +28,7 @@ const notFoundRouter = {
  */
 export const getRouterByUser = () => {
   return axios({
-    url: '/user/dynamic-menu',
+    url: '/admin/permission',
     method: 'get'
     /* headers: {
       'Access-Token': 'xxx'
@@ -39,7 +39,7 @@ export const getRouterByUser = () => {
 
 /**
  * 获取路由菜单信息
- *
+ *e
  * 1. 调用 getRouterByUser() 访问后端接口获得路由结构数组
  *    @see https://github.com/sendya/ant-design-pro-vue/blob/feature/dynamic-menu/public/dynamic-menu.json
  * 2. 调用
@@ -49,9 +49,16 @@ export const generatorDynamicRouter = () => {
   return new Promise((resolve, reject) => {
     // ajax
     getRouterByUser().then(res => {
-      const result = res.result
+      if (res.code !== 0) {
+        reject(res)
+        return
+      }
+
+      const result = [{ children: [], label: 'index', url: '/', redirect: '/dashboard/workplace', component: ['BasicLayout'] }]
+      result[0].children = res.data
       const routers = generator(result)
       routers.push(notFoundRouter)
+      console.log(routers)
       resolve(routers)
     }).catch(err => {
       reject(err)
@@ -70,13 +77,13 @@ export const generator = (routerMap, parent) => {
   return routerMap.map(item => {
     const currentRouter = {
       // 路由地址 动态拼接生成如 /dashboard/workplace
-      path: `${parent && parent.path || ''}/${item.key}`,
+      path: item.url,
       // 路由名称，建议唯一
-      name: item.name || item.key || '',
+      name: item.label,
       // 该路由对应页面的 组件
-      component: constantRouterComponents[item.component || item.key],
+      component: constantRouterComponents[item.component],
       // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
-      meta: { title: item.title, icon: item.icon || undefined, permission: item.key && [ item.key ] || null }
+      meta: { title: item.label, icon: item.icon || undefined }
     }
     // 为了防止出现后端返回结果不规范，处理有可能出现拼接出两个 反斜杠
     currentRouter.path = currentRouter.path.replace('//', '/')
