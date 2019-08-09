@@ -13,7 +13,8 @@ const constantRouterComponents = {
   // 你需要动态引入的页面组件
   analysis: () => import('@/views/dashboard/Analysis'),
   workplace: () => import('@/views/dashboard/Workplace'),
-  monitor: () => import('@/views/dashboard/Monitor')
+  monitor: () => import('@/views/dashboard/Monitor'),
+  permission: () => import('@/views/setting/Permission')
   // ...more
 }
 
