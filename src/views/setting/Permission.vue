@@ -1,7 +1,7 @@
 <template>
   <a-card :bordered="false">
     <a-row :gutter="8">
-      <a-col :span="5">
+      <a-col :offset="4" :span="8">
         <s-tree
           :dataSource="orgTree"
           @click="handleClick"
