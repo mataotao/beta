@@ -14,7 +14,8 @@ const constantRouterComponents = {
   analysis: () => import('@/views/dashboard/Analysis'),
   workplace: () => import('@/views/dashboard/Workplace'),
   monitor: () => import('@/views/dashboard/Monitor'),
-  permission: () => import('@/views/setting/Permission')
+  permission: () => import('@/views/setting/Permission'),
+  role: () => import('@/views/setting/Role')
   // ...more
 }
 
