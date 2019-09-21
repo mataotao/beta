@@ -15,7 +15,9 @@ const constantRouterComponents = {
   workplace: () => import('@/views/dashboard/Workplace'),
   monitor: () => import('@/views/dashboard/Monitor'),
   permission: () => import('@/views/setting/Permission'),
-  role: () => import('@/views/setting/Role')
+  role: () => import('@/views/setting/Role'),
+  user: () => import('@/views/setting/User')
+
   // ...more
 }
 
